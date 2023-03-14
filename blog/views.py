@@ -6,11 +6,17 @@ from django.template.loader import render_to_string
 
 
 def index(request):
-    response = render_to_string('blog/index.html')
+    response = render_to_string('blog/list_detail.html')
     return HttpResponse(response)
 
 def about(request,name_post):
-    return HttpResponse(f'Информация о посте {name_post}')
+    context = {
+        'text': name_post
+    }
+    return render(request,'blog/detail_by_name.html',context=context)
 
 def about_by_num(request,number_post:int):
-    return HttpResponse(f'Здесь содержится информация о посте под номером {number_post}')
+    context = {
+        'num': number_post
+    }
+    return render(request, 'blog/detail_by_number.html',context=context)
