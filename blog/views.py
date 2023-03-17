@@ -6,8 +6,7 @@ from django.template.loader import render_to_string
 
 
 def index(request):
-    response = render_to_string('blog/list_detail.html')
-    return HttpResponse(response)
+    return render(request,'base.html')
 
 def about(request,name_post):
     context = {
