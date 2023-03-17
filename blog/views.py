@@ -1,13 +1,12 @@
 from django.shortcuts import render, HttpResponse
-from django.template.loader import render_to_string
+from random import shuffle
 
 
 # Create your views here.
 
 
 def index(request):
-    context = {
-        "posts" : [
+    posts = [
         {
             'title': 'Рыбалка',
             'description': 'Хорошо посидели',
@@ -19,7 +18,7 @@ def index(request):
             'description': 'Незабываемое путешествие',
             'date': '5 сент 2020',
             'content': '''Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                    Commodi distinctio doloremque et fuga iste neque, pariatur quod sit veritatis voluptates?'''
+                        Commodi distinctio doloremque et fuga iste neque, pariatur quod sit veritatis voluptates?'''
         },
         {
             'title': 'Финал лиги чемпионов',
@@ -51,7 +50,10 @@ def index(request):
             'date': '31 дек 2022',
             'content': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto corporis fuga ipsam laboriosam, nesciunt non quae qui ut veniam.'
         },
-    ],
+    ]
+    shuffle(posts)
+    context = {
+        "posts" : posts[:3]
     }
     return render(request,'blog/index.html',context=context)
 
@@ -63,6 +65,6 @@ def about(request,name_post):
 
 def about_by_num(request,number_post:int):
     context = {
-        'num': number_post
+        'num': number_post,
     }
     return render(request, 'blog/detail_by_number.html',context=context)
