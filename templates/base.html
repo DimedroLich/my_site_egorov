@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %} {% endblock %}</title>
 <style>
 * {
   box-sizing: border-box;
@@ -76,36 +77,16 @@ body {
 </head>
 <body>
 
-<div class="header">
-  <h2>Blog Name</h2>
-</div>
+{% include 'blog/include/header.html' %}
 
-<div class="row">
+
   {% block content %}
 
   {% endblock %}
-  <div class="rightcolumn">
-    <div class="card">
-      <h2>About Me</h2>
-      <div class="fakeimg" style="height:100px;">Image</div>
-      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-    </div>
-    <div class="card">
-      <h3>Popular Post</h3>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div>
-    </div>
-    <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
-    </div>
-  </div>
-</div>
 
-<div class="footer">
-  <h2>Footer</h2>
-</div>
+{% include 'blog/include/right_column.html' %}
+
+{% include 'blog/include/footer.html' %}
 
 </body>
 </html>
